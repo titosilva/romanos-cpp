@@ -1,12 +1,13 @@
+// Copyright 2021 titosilva
+
 #include <string>
 #include <iostream>
 #include "headers/romanos.hpp"
 
-using namespace std;
+using std::string;
 
 RomanNumerals RomanNumbers::GetRomanNumeralFromChar(char numeral) {
-    switch (numeral)
-    {
+    switch (numeral) {
     case 'I':
         return I;
         break;
@@ -35,12 +36,12 @@ RomanNumerals RomanNumbers::GetRomanNumeralFromChar(char numeral) {
 }
 
 bool RomanNumbers::ValidateRomanNumber(string romanNumber) {
-    if(romanNumber.length() > 30) {
+    if (romanNumber.length() > 30) {
         return false;
     }
 
-    for(int i = 0; i < romanNumber.length(); i++) {
-        if(GetRomanNumeralFromChar(romanNumber[i])==Unknown) {
+    for (int i = 0; i < romanNumber.length(); i++) {
+        if (GetRomanNumeralFromChar(romanNumber[i]) == Unknown) {
             return false;
         }
     }
@@ -48,25 +49,27 @@ bool RomanNumbers::ValidateRomanNumber(string romanNumber) {
     return true;
 }
 
-int RomanNumbers::recursiveGetValue(RomanNumerals lastNumeral, string remainingNumerals, int value) {
-    if(remainingNumerals.length()==0) {
+int RomanNumbers::recursiveGetValue(RomanNumerals lastNumeral,
+                                    string remainingNumerals, int value) {
+    if (remainingNumerals.length() == 0) {
         return value;
     }
 
     string numerals = remainingNumerals;
 
-    RomanNumerals nextNumeral = GetRomanNumeralFromChar(numerals[numerals.length()-1]);
+    char nextNumeralChar = numerals[numerals.length()-1];
+    RomanNumerals nextNumeral = GetRomanNumeralFromChar(nextNumeralChar);
     numerals.pop_back();
 
-    if(nextNumeral < lastNumeral) {
+    if (nextNumeral < lastNumeral) {
         return recursiveGetValue(lastNumeral, numerals, value - nextNumeral);
     } else {
-        return recursiveGetValue(nextNumeral, numerals, value + nextNumeral);   
+        return recursiveGetValue(nextNumeral, numerals, value + nextNumeral);
     }
 }
 
 int RomanNumbers::GetValue(string romanNumber) {
-    if(!RomanNumbers::ValidateRomanNumber(romanNumber)) {
+    if (!RomanNumbers::ValidateRomanNumber(romanNumber)) {
         return -1;
     }
 

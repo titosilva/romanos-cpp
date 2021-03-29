@@ -1,8 +1,9 @@
+// Copyright 2021 titosilva
+
 #include <gtest/gtest.h>
 #include "headers/romanos.hpp"
 
-TEST(Validations, ShouldReturnNegative_WhenStringIsBiggerThan30Chars)
-{
+TEST(Validations, ShouldReturnNegative_WhenStringIsBiggerThan30Chars) {
   // length: 34
   int value = RomanNumbers::GetValue("MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM");
   ASSERT_LT(value, 0);
@@ -17,8 +18,7 @@ TEST(Validations, ShouldReturnNegative_WhenStringIsBiggerThan30Chars)
   ASSERT_GE(value, 0);
 }
 
-TEST(Validations, ShouldReturnNegative_WhenANumeralIsUnknown)
-{
+TEST(Validations, ShouldReturnNegative_WhenANumeralIsUnknown) {
   int value = RomanNumbers::GetValue("A");
   ASSERT_LT(value, 0);
   value = RomanNumbers::GetValue("XXIB");
@@ -29,8 +29,7 @@ TEST(Validations, ShouldReturnNegative_WhenANumeralIsUnknown)
   ASSERT_GE(value, 0);
 }
 
-TEST(RomanNumbersConversion, ShouldReturnNumeralValue_WhenNumberIsOneNumeralOnly)
-{
+TEST(RomanNumbersConversion, ShouldReturnNumeralValue_WhenNumberIsOneNumeral) {
   int value = RomanNumbers::GetValue("M");
   ASSERT_EQ(value, M);
   value = RomanNumbers::GetValue("D");
@@ -47,8 +46,7 @@ TEST(RomanNumbersConversion, ShouldReturnNumeralValue_WhenNumberIsOneNumeralOnly
   ASSERT_EQ(value, I);
 }
 
-TEST(RomanNumbersConversion, ShouldReturnNumeralValue_WhenStringIsValid)
-{
+TEST(RomanNumbersConversion, ShouldReturnNumeralValue_WhenStringIsValid) {
   int value = RomanNumbers::GetValue("MCI");
   ASSERT_EQ(value, M + C + I);
   value = RomanNumbers::GetValue("MXCI");
@@ -61,8 +59,7 @@ TEST(RomanNumbersConversion, ShouldReturnNumeralValue_WhenStringIsValid)
   ASSERT_EQ(value, 680);
 }
 
-int main()
-{
+int main() {
   ::testing::InitGoogleTest();
   return RUN_ALL_TESTS();
 }

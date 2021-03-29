@@ -1,8 +1,10 @@
-#ifndef ROMANOS_HPP_
-#define ROMANOS_HPP_
+// Copyright 2021 titosilva
+
+#ifndef HEADERS_ROMANOS_HPP_
+#define HEADERS_ROMANOS_HPP_
 #include <string>
 
-using namespace std;
+using std::string;
 
 enum RomanNumerals {
     Unknown = 0,
@@ -16,12 +18,12 @@ enum RomanNumerals {
 };
 
 class RomanNumbers {
-public:
-    static bool ValidateRomanNumber(string romanNumber);
-    static RomanNumerals GetRomanNumeralFromChar(char numeral);
-    static int GetValue(string romanNumber);
-private:
-    static int recursiveGetValue(RomanNumerals lastNumeral, string remainingNumerals, int value);
+ public:
+     static bool ValidateRomanNumber(string romanNumber);
+     static RomanNumerals GetRomanNumeralFromChar(char numeral);
+     static int GetValue(string romanNumber);
+ private:
+     static int recursiveGetValue(RomanNumerals, string, int);
 };
 
-#endif
+#endif  // HEADERS_ROMANOS_HPP_
